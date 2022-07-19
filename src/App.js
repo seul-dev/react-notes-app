@@ -11,11 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <Button
-          text={'Create Note'}
-          onclick={() => alert('clicked')}
-          color={'gray'}
-        />
+        <Button text={'Create Note'} onclick={() => alert('clicked')} />
         <Button
           text={'Create Note'}
           onclick={() => alert('clicked')}

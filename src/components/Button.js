@@ -18,6 +18,10 @@ const Button = ({ text, color, onclick }) => {
     </ThemeProvider>
   );
 };
+Button.defaultProps = {
+  color: 'gray',
+};
+
 export default Button;
 
 const colorStyles = css`
