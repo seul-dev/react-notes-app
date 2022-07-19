@@ -1,4 +1,5 @@
 import styled, { css, ThemeProvider } from 'styled-components';
+import { darken } from 'polished';
 
 const Button = ({ text, color, onclick }) => {
   return (
@@ -11,12 +12,7 @@ const Button = ({ text, color, onclick }) => {
         },
       }}
     >
-      <StyledButton
-        //   className={['Button', `Button_${type}`].join(' ')}
-        className={'Button'}
-        onClick={onclick}
-        color={color}
-      >
+      <StyledButton className={'Button'} onClick={onclick} color={color}>
         {text}
       </StyledButton>
     </ThemeProvider>
@@ -29,6 +25,9 @@ const colorStyles = css`
     const selected = props.theme.palette[props.color];
     return css`
       background: ${selected};
+      &:hover {
+        background: ${darken(0.1, selected)};
+      }
     `;
   }}
 `;
