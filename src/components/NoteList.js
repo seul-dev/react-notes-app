@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Notes from '../pages/Notes';
 
 const NoteList = ({ notes }) => {
   return (

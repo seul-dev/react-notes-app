@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import Header from '../components/Header';
 
-const Notes = () => {
+const NoteEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const titleRef = useRef();
@@ -70,7 +70,7 @@ const Notes = () => {
   );
 };
 
-export default Notes;
+export default NoteEditor;
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -105,5 +105,6 @@ const StyledSection = styled.section`
     height: 400px;
     padding-top: 20px;
     padding-bottom: 20px;
+    resize: none;
   }
 `;

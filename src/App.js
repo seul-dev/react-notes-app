@@ -1,28 +1,20 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
-import Notes from './pages/Notes';
+import NoteEditor from './pages/NoteEditor';
 import { useState, useEffect } from 'react';
+import useFetch from './util/useFetch';
 
 function App() {
-  const [notes, setNotes] = useState(null);
-  const getData = async () => {
-    await fetch('http://localhost:3001/note/')
-      .then((res) => res.json())
-      .then((data) => setNotes(data));
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const notes = useFetch('http://localhost:3001/note/');
 
   return (
     <BrowserRouter>
       <div className='App'>
         <Routes>
           <Route path='/' element={<Main notes={notes} />} />
-          <Route path='/notes/:id' element={<Notes />} />
-          <Route path='/notes' element={<Notes />} />
+          <Route path='/notes/:id' element={<NoteEditor />} />
+          <Route path='/notes' element={<NoteEditor />} />
         </Routes>
       </div>
     </BrowserRouter>
