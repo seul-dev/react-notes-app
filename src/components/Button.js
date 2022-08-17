@@ -8,7 +8,7 @@ const Button = ({ text, color, onclick }) => {
         palette: {
           red: '#E74C3C',
           blue: '#3498DB',
-          gray: '#dadcde',
+          gray: '#C5C5C5',
         },
       }}
     >
@@ -21,7 +21,6 @@ const Button = ({ text, color, onclick }) => {
 Button.defaultProps = {
   color: 'gray',
 };
-
 export default Button;
 
 const colorStyles = css`
@@ -42,7 +41,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   font-size: 16px;
   padding: 10px 20px 10px 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   white-space: nowrap;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
