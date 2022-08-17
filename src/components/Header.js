@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <h1>Notes</h1>
-      <p>Make your note!</p>
+      <p>Make a note!</p>
     </StyledHeader>
   );
 };

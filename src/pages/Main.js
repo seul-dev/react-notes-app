@@ -1,16 +1,20 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Searchbar from '../components/Searchbar';
 import Button from '../components/Button';
 import Header from '../components/Header';
-const Main = () => {
+import NoteList from '../components/NoteList';
+
+const Main = ({ notes }) => {
   const navigate = useNavigate();
 
   return (
     <div>
       <Header />
-      <Searchbar />
-      <p>main page</p>
+      <StyledForm>
+        <input type='text' placeholder='🔎  search'></input>
+      </StyledForm>
+      {notes && <NoteList notes={notes} />}
       <StyledFooter>
         <Button
           text='Create Note'
@@ -27,4 +31,20 @@ export default Main;
 const StyledFooter = styled.footer`
   display: flex;
   justify-content: end;
+`;
+
+const StyledForm = styled.form`
+  width: 100%;
+  height: 46px;
+  margin-top: 10px;
+  input {
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    padding: 0 20px;
+  }
 `;
