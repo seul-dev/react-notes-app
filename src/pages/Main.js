@@ -31,6 +31,7 @@ export default Main;
 const StyledFooter = styled.footer`
   display: flex;
   justify-content: end;
+  margin-bottom: 20px;
 `;
 
 const StyledForm = styled.form`

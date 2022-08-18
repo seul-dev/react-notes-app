@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import Header from '../components/Header';
+import useFetch from './../util/useFetch';
 
 const NoteEditor = () => {
   const { id } = useParams();
@@ -12,6 +14,17 @@ const NoteEditor = () => {
   const contentRef = useRef();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  //`http://localhost:3001/note/${id}`
+  // useEffect(() => {
+  //   fetch(`http://localhost:3001/note/${id}`)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }, [id]);
 
   const handleSubmit = () => {
     if (title.length < 1) {
@@ -78,7 +91,7 @@ const NoteEditor = () => {
         />
       </StyledSection>
       <StyledFooter>
-        <Button text='Remove Note' color='red' onclick={handleDelete} />
+        {id && <Button text='Remove Note' color='red' onclick={handleDelete} />}
         <Button text='Done' color='blue' onclick={handleSubmit} />
       </StyledFooter>
     </div>
@@ -90,6 +103,7 @@ export default NoteEditor;
 const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const StyledNav = styled.nav`
