@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
 import NoteEditor from './pages/NoteEditor';
-import { useState, useEffect } from 'react';
 import useFetch from './util/useFetch';
 
 function App() {

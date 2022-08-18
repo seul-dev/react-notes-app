@@ -7,6 +7,7 @@ import Header from '../components/Header';
 const NoteEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const titleRef = useRef();
   const contentRef = useRef();
   const [title, setTitle] = useState('');
@@ -32,7 +33,25 @@ const NoteEditor = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(note),
-    }).then(() => navigate('/'));
+    }).then((res) => {
+      if (res.ok) {
+        navigate('/');
+        window.location.reload();
+      }
+    });
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      fetch(`http://localhost:3001/note/${id}`, {
+        method: 'DELETE',
+      }).then((res) => {
+        if (res.ok) {
+          navigate('/');
+          window.location.reload();
+        }
+      });
+    }
   };
 
   return (
@@ -59,11 +78,7 @@ const NoteEditor = () => {
         />
       </StyledSection>
       <StyledFooter>
-        <Button
-          text='Remove Note'
-          color='red'
-          onclick={() => alert('remove')}
-        />
+        <Button text='Remove Note' color='red' onclick={handleDelete} />
         <Button text='Done' color='blue' onclick={handleSubmit} />
       </StyledFooter>
     </div>
