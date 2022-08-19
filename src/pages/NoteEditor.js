@@ -25,14 +25,16 @@ const NoteEditor = () => {
           setContent(data.content);
         });
     }
-  }, []);
+  }, [id]);
 
   const handleSubmit = () => {
     if (title.length < 1) {
       titleRef.current.focus();
+      return;
     }
     if (content.length < 1) {
       contentRef.current.focus();
+      return;
     }
     const timestamp = new Date().toLocaleString();
     const note = {
@@ -76,7 +78,9 @@ const NoteEditor = () => {
   };
 
   const handleDelete = () => {
-    if (window.confirm('삭제하시겠습니까?')) {
+    if (!id) {
+      navigate('/');
+    } else {
       fetch(`http://localhost:3001/note/${id}`, {
         method: 'DELETE',
       }).then((res) => {
@@ -112,7 +116,7 @@ const NoteEditor = () => {
         />
       </StyledSection>
       <StyledFooter>
-        {id && <Button text='Remove Note' color='red' onclick={handleDelete} />}
+        <Button text='Remove Note' color='red' onclick={handleDelete} />
         <Button text='Done' color='blue' onclick={handleSubmit} />
       </StyledFooter>
     </div>

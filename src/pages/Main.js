@@ -1,20 +1,48 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import styled from 'styled-components';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import NoteList from '../components/NoteList';
 
-const Main = ({ notes }) => {
+const Main = () => {
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/note/')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setNotes(data);
+      });
+    let sortedNotes = notes.slice();
+    sortedNotes.sort(
+      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
+    );
+    setNotes(sortedNotes);
+  }, []);
+
+  const handleSearchInput = (e) => {
+    setInputValue(e.target.value);
+    setNotes(notes.filter((el) => el.title.includes(e.target.value)));
+  };
 
   return (
     <div>
       <Header />
       <StyledForm>
-        <input type='text' placeholder='🔎  search'></input>
+        <input
+          type='text'
+          placeholder='🔎  search'
+          value={inputValue}
+          onChange={handleSearchInput}
+        ></input>
       </StyledForm>
-      {notes && <NoteList notes={notes} />}
+      <NoteList notes={notes} />
       <StyledFooter>
         <Button
           text='Create Note'
